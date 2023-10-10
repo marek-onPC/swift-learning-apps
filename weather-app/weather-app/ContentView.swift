@@ -38,50 +38,13 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, isDay ? Color("lightBlue") : .black]),
-                           startPoint: .topLeading,
-                           endPoint: .bottomTrailing)
-            .edgesIgnoringSafeArea(.all)
+            BackgroundView(topColor: .blue, bottomColorLight: Color("lightBlue"), bottomColorDark: .black, isLight: isDay)
             
             VStack {
-                Text("Tokyo, JP")
-                    .font(.system(size: 32, weight: .medium, design: .default))
-                    .foregroundColor(.white)
-                    .padding()
-                
-                VStack(spacing: 8) {
-                    Image(systemName: weatherData.first?.icon ?? "exclamationmark.square")
-                        .renderingMode(.original)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 180, height: 180)
-                    Text("\(weatherData.first?.temp ??  0)°")
-                        .font(.system(size: 70, weight: .medium))
-                        .foregroundColor(.white)
-                }
-                Spacer()
-                ScrollView(.horizontal) {
-                    HStack(spacing: 25) {
-                        ForEach(weatherData.dropFirst()) { weatherDay in
-                            ExtractedView(day: weatherDay.day,
-                                          icon: weatherDay.icon,
-                                          temp: weatherDay.temp)
-                        }
-                    }
-                }
-                .padding()
-                Spacer()
-                Button {
-                    setIsDay()
-                } label: {
-                    Text("Change background")
-                        .padding(16)
-                }
-                    .foregroundColor(.blue)
-                    .background(.white)
-                    .font(.system(size: 16, weight: .bold, design: .default))
-                    .cornerRadius(5)
-                Spacer()
+                CityNameView(cityName: "Tokyo, JP")
+                MainIcon(icon: weatherData.first?.icon, tempValue: weatherData.first?.temp)
+                BottomWeatherBarView(data: weatherData)
+                BackgroundChangeButton(buttonLabel: "Change background", callback: setIsDay)
             }
         }
     }
@@ -90,27 +53,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-    }
-}
-
-struct ExtractedView: View, WeatherType {
-    var day: String
-    var icon: String
-    var temp: Int
-
-    var body: some View {
-        VStack(spacing: 8) {
-            Text(day.uppercased().prefix(3))
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(.white)
-            Image(systemName: icon)
-                .renderingMode(.original)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 50)
-            Text("\(temp)°")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(.white)
-        }
     }
 }
