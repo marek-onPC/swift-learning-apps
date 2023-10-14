@@ -8,31 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isDay: Bool = true
+    @State private var isDarkMode: Bool = true
+    @State private var cityName: String?
+    
+    // Optional because data will be filled after success call
+    @State var currentWeather: Weather?
 
-    var weatherData: Array<Weather> = [
-        Weather(day: "Monday", icon: "cloud.sun.fill", temp: 26),
-        Weather(day: "Tuesday", icon: "sun.max.fill", temp: 32),
-        Weather(day: "Wednesday", icon: "sun.max.fill", temp: 30),
-        Weather(day: "Thursday", icon: "cloud.sun.fill", temp: 27),
-        Weather(day: "Friday", icon: "sun.max.fill", temp: 30),
-        Weather(day: "Saturday", icon: "cloud.drizzle.fill", temp: 33),
-        Weather(day: "Sunday", icon: "cloud.sun.fill", temp: 29),
-    ]
     
     func setIsDay() -> Void {
-        self.isDay = !self.isDay
+        isDarkMode.toggle()
     }
     
     var body: some View {
         ZStack {
-            BackgroundView(topColor: .blue, bottomColorLight: Color("lightBlue"), bottomColorDark: .black, isLight: isDay)
+            BackgroundView(topColor: .blue, bottomColorLight: Color("lightBlue"), bottomColorDark: .black, isLight: isDarkMode)
             
             VStack {
-                CityNameView(cityName: "Tokyo, JP")
-                MainIcon(icon: weatherData.first?.icon, tempValue: weatherData.first?.temp)
-                BottomWeatherBarView(data: weatherData)
-                BackgroundChangeButton(buttonLabel: "Change background", callback: setIsDay)
+                CityNameLabel(cityName: cityName ?? "")
+                MainIcon(icon: "cloud.sun.fill", tempValue: currentWeather?.main.temp ?? 0.0)
+                BackgroundChangeButton(buttonLabel: "Change to dark mode", callback: setIsDay)
+            }
+        }
+        .task {
+            do {
+                currentWeather = try await getCurrentWeather()
+            } catch {
+                print("Error when loading in UI")
             }
         }
     }

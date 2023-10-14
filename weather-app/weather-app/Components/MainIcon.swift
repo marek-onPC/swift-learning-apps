@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainIcon: View {
     var icon: String?
-    var tempValue: Int?
+    var tempValue: Double?
     
     var body: some View {
         VStack(spacing: 8) {
@@ -18,7 +18,8 @@ struct MainIcon: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 180, height: 180)
-            Text("\(tempValue ??  0)°")
+            // "specifier" used to round to two decimal places
+            Text("\(tempValue ??  0, specifier: "%.2f")°")
                 .font(.system(size: 70, weight: .medium))
                 .foregroundColor(.white)
         }

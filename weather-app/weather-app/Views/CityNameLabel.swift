@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CityNameView: View {
+struct CityNameLabel: View {
     var cityName: String
 
     var body: some View {

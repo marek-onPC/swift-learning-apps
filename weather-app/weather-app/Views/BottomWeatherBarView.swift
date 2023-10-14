@@ -13,11 +13,11 @@ struct BottomWeatherBarView: View {
     var body: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 25) {
-                ForEach(data.dropFirst()) { weatherDay in
-                    WeatherDayCard(day: weatherDay.day,
-                                  icon: weatherDay.icon,
-                                  temp: weatherDay.temp)
-                }
+//                ForEach(data.dropFirst()) { weatherDay in
+//                    WeatherDayCard(day: weatherDay.day,
+//                                  icon: weatherDay.icon,
+//                                  temp: weatherDay.temp)
+//                }
             }
         }
         .padding()

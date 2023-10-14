@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WeatherDayCard: View, WeatherType {
+struct WeatherDayCard: View {
     var day: String
     var icon: String
     var temp: Int
