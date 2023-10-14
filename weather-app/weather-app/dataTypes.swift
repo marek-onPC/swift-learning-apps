@@ -7,24 +7,6 @@
 
 import Foundation
 
-//protocol WeatherType {
-//    var day: String { get }
-//    var icon: String { get }
-//    var temp: Float32 { get }
-//    var feelsLike: Float32 { get }
-//    var timestamp: Int? { get }
-//}
-
-//struct Weather: Identifiable, WeatherType {
-//    var id = UUID()
-//    var day: String?
-//    var icon: String
-//    var temp: Float32
-//    var feelsLike: Float32
-//    var timestamp: Int?
-//}
-
-
 // Weather response type
 struct weather: Codable {
     let id: Int

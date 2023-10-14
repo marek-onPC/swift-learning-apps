@@ -146,6 +146,7 @@
 		A857FE1F2ADA430B0020A130 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A8D571872AD5899C00177FF5 /* CityNameLabel.swift */,
 				A8D5718B2AD589D900177FF5 /* MainIcon.swift */,
 				A8D571812AD5892D00177FF5 /* BackgroundChangeButton.swift */,
 			);
@@ -155,7 +156,6 @@
 		A857FE202ADA43310020A130 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A8D571872AD5899C00177FF5 /* CityNameLabel.swift */,
 				A8D571852AD5898A00177FF5 /* BackgroundView.swift */,
 			);
 			path = Views;
