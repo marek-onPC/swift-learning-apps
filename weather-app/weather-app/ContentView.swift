@@ -7,21 +7,9 @@
 
 import SwiftUI
 
-protocol WeatherType {
-    var day: String { get }
-    var icon: String { get }
-    var temp: Int { get }
-}
-
-struct Weather: Identifiable, WeatherType {
-    var id = UUID()
-    var day: String
-    var icon: String
-    var temp: Int
-}
-
 struct ContentView: View {
-    @State var isDay: Bool = true
+    @State private var isDay: Bool = true
+
     var weatherData: Array<Weather> = [
         Weather(day: "Monday", icon: "cloud.sun.fill", temp: 26),
         Weather(day: "Tuesday", icon: "sun.max.fill", temp: 32),

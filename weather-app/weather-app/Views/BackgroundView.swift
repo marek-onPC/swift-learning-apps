@@ -17,6 +17,6 @@ struct BackgroundView: View {
         LinearGradient(gradient: Gradient(colors: [topColor, isLight ? bottomColorLight : bottomColorDark]),
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
-        .edgesIgnoringSafeArea(.all)
+        .ignoresSafeArea(.all)
     }
 }
