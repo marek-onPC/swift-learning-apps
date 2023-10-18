@@ -11,9 +11,8 @@ enum NetworkCallError: Error {
     case invalidURL, serviceError, networkError, decodingError
 }
 
-func getCurrentWeather() async throws -> Weather {
-    // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-    let endpoint = "https://api.openweathermap.org/data/2.5/weather?q=Tokyo&appid=API_KEY&units=metric"
+func getCurrentWeather(cityName: String) async throws -> Weather {
+    let endpoint = "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=75f9685f116b28f3c9b5ad6246d906ae&units=metric"
     
     // URL() return an optional value so in case if string cannot be parsed into URL
     // we should actually stop function from making a call (hence throwing an error)

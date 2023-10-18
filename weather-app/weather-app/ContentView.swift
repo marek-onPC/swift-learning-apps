@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isDarkMode: Bool = true
-    @State private var cityName: String?
+    @State private var cityName: String = ""
     
     // Optional because data will be filled after success call
     @State var currentWeather: Weather?
@@ -21,19 +21,21 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            BackgroundView(topColor: .blue, bottomColorLight: Color("lightBlue"), bottomColorDark: .black, isLight: isDarkMode)
+            BackgroundView(topColor: .blue,
+                           bottomColorLight: Color("lightBlue"),
+                           bottomColorDark: .black,
+                           isLight: isDarkMode)
             
             VStack {
-                CityNameLabel(cityName: cityName ?? "")
-                MainIcon(icon: "cloud.sun.fill", tempValue: currentWeather?.main.temp ?? 0.0)
-                BackgroundChangeButton(buttonLabel: "Change to dark mode", callback: setIsDay)
-            }
-        }
-        .task {
-            do {
-                currentWeather = try await getCurrentWeather()
-            } catch {
-                print("Error when loading in UI")
+                if (currentWeather == nil) {
+                    EmptyCityPlaceholder()
+                } else {
+                    WeatherCard(cityName: currentWeather?.name ?? "",
+                                icon: "cloud.sun.fill",
+                                tempValue: currentWeather?.main.temp ?? 0.0)
+                }
+                Spacer()
+                WeatherSearchBar(cityName: $cityName, currentWeather: $currentWeather)
             }
         }
     }

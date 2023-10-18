@@ -7,19 +7,24 @@
 
 import SwiftUI
 
-struct MainIcon: View {
-    var icon: String?
-    var tempValue: Double?
+struct WeatherCard: View {
+    var cityName: String
+    var icon: String
+    var tempValue: Double
     
     var body: some View {
         VStack(spacing: 8) {
-            Image(systemName: icon ?? "exclamationmark.square")
+            Text(cityName)
+                .font(.system(size: 32, weight: .medium, design: .default))
+                .foregroundColor(.white)
+                .padding()
+            Image(systemName: icon)
                 .renderingMode(.original)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 180, height: 180)
             // "specifier" used to round to two decimal places
-            Text("\(tempValue ??  0, specifier: "%.2f")°")
+            Text("\(tempValue, specifier: "%.2f")°")
                 .font(.system(size: 70, weight: .medium))
                 .foregroundColor(.white)
         }
