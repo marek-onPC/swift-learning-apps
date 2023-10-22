@@ -8,20 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var cityName: String = ""
+    
+    // Optional because data will be filled after success call
+    @State private var currentWeather: Weather?
+    @State private var hourlyWeather: ThreeHourWeather?
+
     var body: some View {
         TabView {
             Group {
-                TodayView()
+                TodayView(cityName: $cityName,
+                          currentWeather: $currentWeather,
+                          hourlyWeather: $hourlyWeather)
                     .tabItem {
                         // SF Symbols
                         Image(systemName: "sun.max.fill")
                         // Label text
                         Text("Today")
                     }
-                WeekView()
+                HourlyView(cityName: $cityName,
+                         currentWeather: $currentWeather,
+                           hourlyWeather: $hourlyWeather)
                     .tabItem {
                         Image(systemName: "calendar")
-                        Text("Week")
+                        Text("Hourly")
                     }
             }
             .toolbarBackground(.blue, for: .tabBar)
@@ -30,6 +40,7 @@ struct ContentView: View {
         }
         // To define accent color of the selcted Tab button
         .accentColor(.white)
+
     }
 }
 

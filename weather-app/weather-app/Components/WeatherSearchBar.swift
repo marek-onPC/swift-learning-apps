@@ -10,6 +10,7 @@ import SwiftUI
 struct WeatherSearchBar: View {
     @Binding var cityName: String
     @Binding var currentWeather: Weather?
+    @Binding var hourlyWeather: ThreeHourWeather?
     
     var body: some View {
         TextField("City name", text: $cityName)
@@ -25,7 +26,9 @@ struct WeatherSearchBar: View {
             Task {
                 do {
                     currentWeather = try await getCurrentWeather(cityName: cityName)
+                    hourlyWeather = try await getThreeHourWeather(cityName: cityName)
                     print(currentWeather ?? "")
+                    print(hourlyWeather ?? "")
                 } catch {
                     print("Error when loading by Button")
                 }

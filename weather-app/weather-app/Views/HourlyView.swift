@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct TodayView: View {
+struct HourlyView: View {
     @Binding var cityName: String
     @Binding var currentWeather: Weather?
     @Binding var hourlyWeather: ThreeHourWeather?
     @State private var isDarkMode: Bool = true
-
+    
     func setIsDay() -> Void {
         isDarkMode.toggle()
     }
@@ -25,14 +25,14 @@ struct TodayView: View {
                            isLight: isDarkMode)
             
             VStack {
-                Text("Today TAB")
-                if (currentWeather == nil) {
-                    EmptyCityPlaceholder()
-                } else {
-                    WeatherCard(cityName: currentWeather?.name ?? "",
-                                icon: "cloud.sun.fill",
-                                tempValue: currentWeather?.main.temp ?? 0.0)
-                }
+                Text("Hourly TAB")
+//                if (currentWeather == nil) {
+//                    EmptyCityPlaceholder()
+//                } else {
+//                    WeatherCard(cityName: currentWeather?.name ?? "",
+//                                icon: "cloud.sun.fill",
+//                                tempValue: currentWeather?.main.temp ?? 0.0)
+//                }
                 Spacer()
                 WeatherSearchBar(cityName: $cityName, currentWeather: $currentWeather, hourlyWeather: $hourlyWeather)
             }

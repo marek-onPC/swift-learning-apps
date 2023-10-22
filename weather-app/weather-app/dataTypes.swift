@@ -7,6 +7,8 @@
 
 import Foundation
 
+// Current Weather Data
+
 // Weather response type
 struct weather: Codable {
     let id: Int
@@ -28,4 +30,23 @@ struct Weather: Codable {
     let main: main
     let name: String
     let dt: Int
+}
+
+
+// Week Weather Data
+struct CityData: Codable {
+    let name: String
+    let country: String
+}
+
+
+struct ThreeHourWeatherEntry: Codable {
+    let weather: Array<weather>
+    let main: main
+    let dt: Int
+}
+
+struct ThreeHourWeather: Codable {
+    let city: CityData
+    let list: Array<ThreeHourWeatherEntry>
 }
