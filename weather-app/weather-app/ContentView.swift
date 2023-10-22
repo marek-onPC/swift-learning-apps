@@ -9,7 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TodayView()
+        TabView {
+            Group {
+                TodayView()
+                    .tabItem {
+                        // SF Symbols
+                        Image(systemName: "sun.max.fill")
+                        // Label text
+                        Text("Today")
+                    }
+                WeekView()
+                    .tabItem {
+                        Image(systemName: "calendar")
+                        Text("Week")
+                    }
+            }
+            .toolbarBackground(.blue, for: .tabBar)
+            .toolbarBackground(.visible, for: .tabBar)
+            .toolbarColorScheme(.dark, for: .tabBar)
+        }
+        // To define accent color of the selcted Tab button
+        .accentColor(.white)
     }
 }
 

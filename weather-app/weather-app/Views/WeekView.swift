@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TodayView: View {
+struct WeekView: View {
     @State private var isDarkMode: Bool = true
     @State private var cityName: String = ""
     
@@ -21,12 +21,13 @@ struct TodayView: View {
     
     var body: some View {
         ZStack {
-            BackgroundView(topColor: .blue,
-                           bottomColorLight: Color("lightBlue"),
+            BackgroundView(topColor: Color("lightBlue"),
+                           bottomColorLight: .blue,
                            bottomColorDark: .black,
                            isLight: isDarkMode)
             
             VStack {
+                Text("Week TAB")
                 if (currentWeather == nil) {
                     EmptyCityPlaceholder()
                 } else {
