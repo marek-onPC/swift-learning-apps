@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TodayView: View {
+struct CurrentView: View {
     @Binding var cityName: String
     @Binding var currentWeather: Weather?
     @Binding var hourlyWeather: ThreeHourWeather?

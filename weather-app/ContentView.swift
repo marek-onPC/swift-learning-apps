@@ -17,14 +17,14 @@ struct ContentView: View {
     var body: some View {
         TabView {
             Group {
-                TodayView(cityName: $cityName,
+                CurrentView(cityName: $cityName,
                           currentWeather: $currentWeather,
                           hourlyWeather: $hourlyWeather)
                     .tabItem {
                         // SF Symbols
                         Image(systemName: "sun.max.fill")
                         // Label text
-                        Text("Today")
+                        Text("Current")
                     }
                 HourlyView(cityName: $cityName,
                          currentWeather: $currentWeather,
