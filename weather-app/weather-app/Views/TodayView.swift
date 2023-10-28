@@ -25,7 +25,6 @@ struct TodayView: View {
                            isLight: isDarkMode)
             
             VStack {
-                Text("Today TAB")
                 if (currentWeather == nil) {
                     EmptyCityPlaceholder()
                 } else {

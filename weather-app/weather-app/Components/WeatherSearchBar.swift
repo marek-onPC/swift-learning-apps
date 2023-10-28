@@ -27,8 +27,6 @@ struct WeatherSearchBar: View {
                 do {
                     currentWeather = try await getCurrentWeather(cityName: cityName)
                     hourlyWeather = try await getThreeHourWeather(cityName: cityName)
-                    print(currentWeather ?? "")
-                    print(hourlyWeather ?? "")
                 } catch {
                     print("Error when loading by Button")
                 }

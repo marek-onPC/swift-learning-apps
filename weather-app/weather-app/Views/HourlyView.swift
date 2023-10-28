@@ -25,14 +25,17 @@ struct HourlyView: View {
                            isLight: isDarkMode)
             
             VStack {
-                Text("Hourly TAB")
-//                if (currentWeather == nil) {
-//                    EmptyCityPlaceholder()
-//                } else {
-//                    WeatherCard(cityName: currentWeather?.name ?? "",
-//                                icon: "cloud.sun.fill",
-//                                tempValue: currentWeather?.main.temp ?? 0.0)
-//                }
+                if (hourlyWeather == nil) {
+                    EmptyCityPlaceholder()
+                } else {
+                    if let hourlyWeatherList = hourlyWeather?.list {
+                        ForEach(hourlyWeatherList) { weatherEntry in
+                                HourlyWeatherCard(timestamp: weatherEntry.dt,
+                                                  description: weatherEntry.weather[0].description,
+                                                  tempValue: weatherEntry.main.temp)
+                        }
+                    }
+                }
                 Spacer()
                 WeatherSearchBar(cityName: $cityName, currentWeather: $currentWeather, hourlyWeather: $hourlyWeather)
             }

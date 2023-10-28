@@ -40,12 +40,21 @@ struct CityData: Codable {
 }
 
 
+// type corresponding to API response (single entry of an array from response)
 struct ThreeHourWeatherEntry: Codable {
     let weather: Array<weather>
     let main: main
     let dt: Int
 }
 
+// extension with UUID so array could be looped inside code
+// need to be done by extension because API response type (in time of decoding) needs to be axactly like API response
+extension ThreeHourWeatherEntry: Identifiable {
+    var id: UUID { return UUID() }
+}
+
+
+// type corresponding to API response (with array in reponse)
 struct ThreeHourWeather: Codable {
     let city: CityData
     let list: Array<ThreeHourWeatherEntry>
