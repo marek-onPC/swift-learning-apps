@@ -29,10 +29,12 @@ struct HourlyView: View {
                     EmptyCityPlaceholder()
                 } else {
                     if let hourlyWeatherList = hourlyWeather?.list {
-                        ForEach(hourlyWeatherList) { weatherEntry in
-                                HourlyWeatherCard(timestamp: weatherEntry.dt,
-                                                  description: weatherEntry.weather[0].description,
-                                                  tempValue: weatherEntry.main.temp)
+                        ScrollView(.vertical) {
+                            ForEach(hourlyWeatherList) { weatherEntry in
+                                    HourlyWeatherCard(timestamp: weatherEntry.dt,
+                                                      description: weatherEntry.weather[0].description,
+                                                      tempValue: weatherEntry.main.temp)
+                            }
                         }
                     }
                 }

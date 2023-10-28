@@ -15,7 +15,7 @@ struct HourlyWeatherCard: View {
     func formattedDate(timestamp: Int) -> String {
         let dateFormatter = DateFormatter()
         let dateObject = Date(timeIntervalSince1970: TimeInterval(timestamp))
-        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm"
     
         return dateFormatter.string(from: dateObject)
     }
@@ -24,14 +24,20 @@ struct HourlyWeatherCard: View {
         VStack(spacing: 8) {
             Text(formattedDate(timestamp: timestamp))
                 .font(.system(size: 18, weight: .medium))
-                .foregroundColor(.white)
-            Text(description.uppercased())
-                .font(.system(size: 14, weight: .medium))
-                .foregroundColor(.white)
-            Text("\(tempValue, specifier: "%.2f")°")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(.white)
+            HStack {
+                Text(description.uppercased())
+                    .font(.system(size: 14, weight: .medium))
+                    .padding(.horizontal, 10)
+                Spacer()
+                Text("\(tempValue, specifier: "%.2f")°")
+                    .font(.system(size: 16, weight: .medium))
+                    .padding(.horizontal, 10)
+            }
         }
+        // maxWidth: .infinity to fill all aviable space
+        .frame(maxWidth: .infinity)
+        .background(Color.white)
+        .cornerRadius(5)
         .padding(8)
     }
 }
