@@ -29,7 +29,7 @@ struct CurrentView: View {
                     EmptyCityPlaceholder()
                 } else {
                     WeatherCard(cityName: currentWeather?.name ?? "",
-                                icon: "cloud.sun.fill",
+                                type: currentWeather?.weather[0].main ?? "",
                                 tempValue: currentWeather?.main.temp ?? 0.0)
                 }
                 Spacer()

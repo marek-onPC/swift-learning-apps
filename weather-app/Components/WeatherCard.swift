@@ -9,8 +9,14 @@ import SwiftUI
 
 struct WeatherCard: View {
     var cityName: String
-    var icon: String
+    var type: String
     var tempValue: Double
+    let weatherIconDict = ["": "sun.max.fill",
+                           "sun": "sun.max.fill",
+                           "clear": "sun.max.fill",
+                           "rain": "cloud.rain.fill",
+                           "snow": "cloud.snow.fill",
+                           "clouds": "cloud.fill"]
     
     var body: some View {
         VStack(spacing: 8) {
@@ -18,11 +24,13 @@ struct WeatherCard: View {
                 .font(.system(size: 32, weight: .medium, design: .default))
                 .foregroundColor(.white)
                 .padding()
-            Image(systemName: icon)
-                .renderingMode(.original)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 180, height: 180)
+            if let icon = weatherIconDict[type.lowercased()] {
+                Image(systemName: icon)
+                    .renderingMode(.original)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 180, height: 180)
+            }
             // "specifier" used to round to two decimal places
             Text("\(tempValue, specifier: "%.2f")°")
                 .font(.system(size: 70, weight: .medium))
